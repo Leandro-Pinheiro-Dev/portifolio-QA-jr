@@ -1,40 +1,52 @@
-document.getElementById('formUsuario').addEventListener('submit', async function(event) {
+document
+  .getElementById("formTinta")
+  .addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const usuarioData = {
-        usuario: document.getElementById('usuario').value,
-        email: document.getElementById('email').value,
-        telefone: document.getElementById('telefone').value,
-        endereco: document.getElementById('endereco').value,
-        cidade: document.getElementById('cidade').value,
-        estado: document.getElementById('estado').value,
-        cep: document.getElementById('cep').value,
-        justificativa: document.getElementById('justificativa').value
+    const feedback = document.getElementById("feedback");
+    feedback.textContent = "";
+    feedback.className = "";
+
+    const data = {
+      nome: document.getElementById("nome").value.trim(),
+      tipo: document.getElementById("tipo").value,
+      cor: document.getElementById("cor").value,
+      acabamento: document.getElementById("acabamento").value,
+      quantidade: Number(document.getElementById("quantidade").value),
+      validade: document.getElementById("validade").value,
+      condicao: document.getElementById("condicao").value,
     };
 
-    try {
-        const response = await fetch('http://127.0.0.1:5000/cadastrar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'  // Adicionando cabeçalho
-            },
-            body: new URLSearchParams(usuarioData),
-        });
-
-        const result = await response.text();
-        if (response.ok) {
-            displayMessage('Usuário cadastrado com sucesso!', 'success');
-        } else {
-            displayMessage(`Erro: ${result}`, 'error');
-        }
-    } catch (error) {
-        displayMessage(`Erro: ${error}`, 'error');
+    if (!data.nome || !data.tipo || !data.cor || data.quantidade <= 0) {
+      feedback.textContent =
+        "Preencha corretamente todos os campos obrigatórios.";
+      feedback.className = "error";
+      return;
     }
-});
 
-function displayMessage(message, type) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', type);
-    messageDiv.textContent = message;
-    document.body.appendChild(messageDiv);
-}
+    try {
+      const response = await fetch("http://127.0.0.1:5000/cadastrar_tinta", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        feedback.textContent =
+          result.message || "Tinta cadastrada com sucesso!";
+        feedback.className = "success";
+        document.getElementById("formTinta").reset();
+      } else {
+        feedback.textContent = result.error || "Erro ao cadastrar tinta.";
+        feedback.className = "error";
+      }
+    } catch (error) {
+      console.error(error);
+      feedback.textContent = "Erro ao conectar com o servidor.";
+      feedback.className = "error";
+    }
+  });

@@ -63,6 +63,22 @@ p{
   border-radius: 30px;
 }
 
+#voltar {
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  left: 140px;
+  bottom: 20px;
+  padding: 5px 10px 5px 10px;
+}
+
+#voltar:hover {
+  padding: 5px 15px 5px 15px;
+  color:white;
+  background: #000;
+  transition: 0.5s ease-in-out;
+}
+
 #submit{
  border-radius: 10px;
  display: flex;
