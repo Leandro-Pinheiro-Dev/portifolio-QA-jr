@@ -17,7 +17,22 @@ document
       condicao: document.getElementById("condicao").value,
     };
 
-    if (!data.nome || !data.tipo || !data.cor || data.quantidade <= 0) {
+    // Validação do nome
+    if (!data.nome) {
+      feedback.textContent = "Preencha este campo";
+      feedback.className = "error";
+      return;
+    }
+
+    // Validação dos selects
+    if (!data.tipo || !data.cor || !data.acabamento) {
+      feedback.textContent = "Selecione um item da lista";
+      feedback.className = "error";
+      return;
+    }
+
+    // Validação da quantidade
+    if (isNaN(data.quantidade) || data.quantidade <= 0) {
       feedback.textContent =
         "Preencha corretamente todos os campos obrigatórios.";
       feedback.className = "error";
