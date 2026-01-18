@@ -4,7 +4,7 @@
 
 O **Banco de Tintas** é uma aplicação web desenvolvida com foco em **qualidade de software**, abrangendo **testes manuais e automação de testes** aplicados a um sistema real de cadastro de tintas.
 
-O projeto foi estruturado seguindo boas práticas de **engenharia de software e QA**, com destaque para o uso do **padrão Page Object Model (POM)** na automação com Selenium.
+O projeto foi estruturado seguindo boas práticas com destaque para o uso do **padrão Page Object Model (POM)** na automação com Selenium.
 
 Este repositório tem como objetivo demonstrar competências técnicas em:
 
