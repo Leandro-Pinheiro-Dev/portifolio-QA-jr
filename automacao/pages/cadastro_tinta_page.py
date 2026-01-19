@@ -8,7 +8,7 @@ class CadastroTintaPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
-    # ===== Locators =====
+    # ===== LOCATORS =====
     NOME = (By.ID, "nome")
     TIPO = (By.ID, "tipo")
     COR = (By.ID, "cor")
@@ -19,61 +19,45 @@ class CadastroTintaPage:
     BOTAO_SUBMIT = (By.XPATH, "//form[@id='formTinta']//button[@type='submit']")
     FEEDBACK = (By.ID, "feedback")
 
-    # ===== Ações =====
+    # ===== AÇÕES =====
     def abrir_pagina(self):
-        # Abre a página de cadastro de tinta
         self.driver.get("http://127.0.0.1:5500/frontend/index.html")
         self.wait.until(EC.visibility_of_element_located(self.NOME))
 
-    def preencher_nome(self, nome):
+    def preencher_nome(self, valor):
         campo = self.driver.find_element(*self.NOME)
         campo.clear()
-        campo.send_keys(nome)
+        campo.send_keys(valor)
 
-    def preencher_tipo(self, tipo):
-        self.driver.find_element(*self.TIPO).send_keys(tipo)
+    def preencher_select(self, locator, valor):
+        self.driver.find_element(*locator).send_keys(valor)
 
-    def preencher_cor(self, cor):
-        self.driver.find_element(*self.COR).send_keys(cor)
-
-    def preencher_acabamento(self, acabamento):
-        self.driver.find_element(*self.ACABAMENTO).send_keys(acabamento)
-
-    def preencher_quantidade(self, quantidade):
+    def preencher_quantidade(self, valor):
         campo = self.driver.find_element(*self.QUANTIDADE)
         campo.clear()
-        campo.send_keys(str(quantidade))
+        campo.send_keys(str(valor))
 
-    def preencher_validade(self, validade):
+    def preencher_validade(self, valor):
         campo = self.driver.find_element(*self.VALIDADE)
         campo.clear()
-        campo.send_keys(validade)
-
-    def preencher_condicao(self, condicao):
-        self.driver.find_element(*self.CONDICAO).send_keys(condicao)
+        campo.send_keys(valor)
 
     def enviar_formulario(self):
         self.driver.find_element(*self.BOTAO_SUBMIT).click()
 
     def obter_feedback(self):
-        # Captura mensagem exibida pelo sistema (frontend/backend)
         return self.driver.find_element(*self.FEEDBACK).text
 
     def preencher_formulario_completo(self, dados):
-        # Preenche todos os campos do formulário
         self.preencher_nome(dados.get("nome", ""))
-        self.preencher_tipo(dados.get("tipo", ""))
-        self.preencher_cor(dados.get("cor", ""))
-        self.preencher_acabamento(dados.get("acabamento", ""))
+        self.preencher_select(self.TIPO, dados.get("tipo", ""))
+        self.preencher_select(self.COR, dados.get("cor", ""))
+        self.preencher_select(self.ACABAMENTO, dados.get("acabamento", ""))
         self.preencher_quantidade(dados.get("quantidade", ""))
         self.preencher_validade(dados.get("validade", ""))
-        self.preencher_condicao(dados.get("condicao", ""))
+        self.preencher_select(self.CONDICAO, dados.get("condicao", ""))
 
-    def obter_mensagem_validacao_select(self, locator):
-        """
-        Retorna a mensagem de validação HTML5 (required)
-        exibida pelo navegador para selects não preenchidos
-        """
+    def obter_mensagem_validacao(self, locator):
         elemento = self.driver.find_element(*locator)
         return self.driver.execute_script(
             "return arguments[0].validationMessage;", elemento
