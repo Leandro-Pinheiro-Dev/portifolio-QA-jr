@@ -1,48 +1,104 @@
+# 📘 Banco de Tintas — QA Jr Portfolio
 
-## 📘 Banco de Tintas — QA Jr Portfolio
+## 🧾 Descrição do Projeto
 
-### 🧾 Descrição
+O **Banco de Tintas** é uma aplicação web desenvolvida com foco em **qualidade de software**, abrangendo **testes manuais e automação de testes** aplicados a um sistema real de cadastro de tintas.
 
-Este repositório contém o projeto **Banco de Tintas**, que inclui:
+O projeto foi estruturado seguindo boas práticas com destaque para o uso do **padrão Page Object Model (POM)** na automação com Selenium.
 
-📌 Interface web para cadastro de tintas (frontend HTML/CSS/JS)
-📌 Backend em Python (Flask) com persistência em banco de dados MySQL
-📌 Scripts de automação de testes usando **Selenium WebDriver**
-📌 Análise de testes manuais e automatizados com evidências e resultados
+Este repositório tem como objetivo demonstrar competências técnicas em:
 
-O objetivo é demonstrar habilidades de **testes manuais, automação e integração** entre frontend, backend e banco de dados.
-
----
-
-## 🚀 Tecnologias Usadas
-
-| Camada         | Tecnologia                             |
-| -------------- | -------------------------------------- |
-| Frontend       | HTML, CSS, JavaScript                  |
-| Backend        | Python 3.11.x, Flask                      |
-| Banco de Dados | MySQL                                  |
-| Automação      | Selenium WebDriver                     |
-| Ferramentas    | VS Code, ChromeDriver, MySQL Workbench |
+* Testes manuais
+* Automação de testes
+* Integração Frontend, Backend e Banco de Dados
+* Organização e documentação de projetos de QA
 
 ---
 
-## 🔧 Pré‑Requisitos
+## 🗂️ Estrutura do Projeto
 
-Antes de iniciar, verifique se você tem:
+A automação foi organizada seguindo o **Page Object Model**, separando responsabilidades de forma clara e escalável.
 
-1. **Python 3.x** instalado
-2. **MySQL Server e MySQL Workbench**
-3. **Google Chrome** instalado
-4. **ChromeDriver** compatível com sua versão do Chrome
-5. Editor de código (ex.: **VS Code**)
+```
+Banco-de-tintas/
+│
+├── automacao/
+│   ├── pages/                 # Page Objects (mapeamento de telas)
+│   │   └── cadastro_tinta_page.py
+│   │
+│   ├── tests/                 # Casos de teste automatizados
+│   │   └── test_cadastro_tinta.py
+│   │
+│   ├── utils/                 # Utilitários (driver, configurações)
+│   │   └── driver_factory.py
+│   │
+│   └── venv/                  # Ambiente virtual da automação
+│
+├── backend/
+│   ├── app.py                 # Backend Flask
+│   ├── venv/                  # Ambiente virtual do backend
+│   └── __pycache__/
+│
+├── banco de dados/
+│   └── schema.sql             # Script de criação do banco
+│
+├── front-end/
+│   ├── index.html
+│   ├── script.js
+│   ├── styles.css
+│   └── img/
+│
+├── chromedriver.exe
+├── Analise_Testes_Tinta.xlsx
+└── README.md
+```
 
 ---
 
-## 🛠️ Configuração
+## 🧠 Padrão Page Object Model (POM)
 
-### 💿 Banco de Dados
+A automação utiliza o **Page Object Model**, onde:
 
-No **MySQL Workbench** ou terminal SQL, execute:
+* Cada página da aplicação é representada por uma **classe**
+* Elementos são mapeados por **locators**
+* Ações e comportamentos ficam centralizados
+* Os testes ficam mais limpos, legíveis e fáceis de manter
+
+📌 Exemplo:
+
+* `pages/cadastro_tinta_page.py` → representa a tela de cadastro
+* `tests/test_cadastro_tinta.py` → contém apenas os cenários de teste
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+| Camada            | Tecnologia                             |
+| ----------------- | -------------------------------------- |
+| Frontend          | HTML, CSS, JavaScript                  |
+| Backend           | Python 3.11, Flask                     |
+| Banco de Dados    | MySQL                                  |
+| Automação         | Selenium WebDriver                     |
+| Padrão de Projeto | Page Object Model (POM)                |
+| Ferramentas       | VS Code, ChromeDriver, MySQL Workbench |
+
+---
+
+## 🔧 Pré-Requisitos
+
+Antes de executar o projeto, certifique-se de ter instalado:
+
+1. Python 3.x
+2. MySQL Server e MySQL Workbench
+3. Google Chrome
+4. ChromeDriver compatível com o navegador
+5. VS Code ou editor similar
+
+---
+
+## 💿 Configuração do Banco de Dados
+
+Execute o script abaixo no MySQL:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS banco_tintas
@@ -63,44 +119,23 @@ CREATE TABLE IF NOT EXISTS Tinta (
 );
 ```
 
-> Ajuste seu usuário/senha no arquivo de conexão do backend conforme necessário.
+📌 Ajuste usuário e senha no backend conforme seu ambiente.
 
 ---
 
-## 🧑‍💻 Rodando o Projeto
+## ▶️ Executando a Aplicação
 
 ### 🔹 Backend (Flask)
 
-1. Abra o terminal
-2. Vá para a pasta `backend`:
-
-```power shell
+```bash
 cd backend
-```
-
-3. Crie e ative ambiente virtual:
-
-```power shell
 python -m venv .venv
-# Windows
 .venv\Scripts\activate
-# Linux / macOS
-source .venv/bin/activate
-```
-
-4. Instale dependências:
-
-```power shell
-pip install flask mysql‑connector‑python
-```
-
-5. Execute o servidor Flask:
-
-```power shell
+pip install flask mysql-connector-python
 python app.py
 ```
 
-O backend ficará disponível em:
+Servidor disponível em:
 
 ```
 http://127.0.0.1:5000
@@ -113,23 +148,24 @@ http://127.0.0.1:5000
 Abra o arquivo:
 
 ```
-http://127.0.0.1:5500/frontend/index.html
+front-end/index.html
 ```
 
-no navegador (ou use o Live Server do VS Code).
+Ou utilize o **Live Server** do VS Code.
 
 ---
 
 ## 🧪 Testes Manuais
 
-### 🚧 Cenários executados
+### Cenários Validados
 
-✔ Campos obrigatórios bem preenchidos
-✔ Tentativas com campos vazios
-✔ Verificação de mensagem de erro
-✔ Registro válido salvo no banco
+✔ Campos obrigatórios
+✔ Validação de selects obrigatórios
+✔ Mensagens de erro
+✔ Registros inválidos
+✔ Cadastro válido persistido no banco
 
-Verifique diretamente no MySQL após um cadastro válido:
+Consulta no banco:
 
 ```sql
 SELECT * FROM Tinta;
@@ -137,53 +173,61 @@ SELECT * FROM Tinta;
 
 ---
 
-## 🤖 Automação com Selenium
+## 🤖 Automação de Testes (Selenium)
 
-### 💼 Instalação
+### 📦 Instalação
 
-Na pasta do seu projeto (mesmo ambiente que rodou o backend), instale Selenium:
-
-```power shell
+```bash
 pip install selenium
 ```
+
 ---
 
-### 🏃 Executando os testes
+### ▶️ Execução dos Testes Automatizados
 
-No terminal:
+Com o backend rodando:
 
-```power shell
-cd backend
-python app.py
+```bash
+cd automacao
+python -m tests.test_cadastro_tinta
 ```
-```power shell
-cd frontend
-python automaizar_tintas.py
-```
-Ele vai executar:
 
-✔ Casos negativos (campos obrigatórios vazios)
-✔ Caso positivo (cadastro válido)
+### Cenários Automatizados
 
-Veja os resultados no terminal e confirme no banco de dados.
+✔ Testes negativos (validações de campos e selects obrigatórios)
+✔ Teste positivo (cadastro válido)
+✔ Captura de mensagens de feedback do sistema
+✔ Impressão dos resultados no console
 
 ---
 
 ## 📊 Análise de Testes
 
-Você também encontra no repositório o arquivo:
+O arquivo abaixo contém a análise consolidada:
 
-📄 **Analise_Testes_Tinta.xlsx** – com tabela de resultados, entradas, feedbacks e verificação no banco.
+📄 **Analise_Testes_Tinta.xlsx**
 
+Inclui:
+
+* Casos de teste
+* Entradas
+* Resultados esperados
+* Resultados obtidos
+* Evidências
 
 ---
 
-## 👍 Considerações Finais
+## ✅ Considerações Finais
 
-Esse projeto demonstra:
+Este projeto demonstra:
 
-✔ Entendimento de formulários web
-✔ Integração com banco de dados
-✔ Testes manuais e automatizados
-✔ Documentação clara do processo
+✔ Aplicação prática do padrão Page Object Model
+✔ Automação de testes com Selenium
+✔ Validações funcionais e de regras de negócio
+✔ Integração completa Frontend, Backend e Banco de Dados
+✔ Organização e documentação voltadas para portfólio QA Jr
 
+---
+
+📌 **Autor:** Leandro Pinheiro
+📌 **Objetivo:** Portfólio QA Júnior
