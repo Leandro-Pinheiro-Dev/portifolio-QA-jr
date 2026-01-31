@@ -31,7 +31,11 @@ def get_db_connection():
 def home():
     return jsonify({"status": "API Banco de Tintas rodando"}), 200
 
+<<<<<<< HEAD
 @app.route('/cadastrar_tinta', methods=['POST'])
+=======
+@app.route('/cadastrar_tinta', methods=['POST', 'OPTIONS'])
+>>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
 @cross_origin()
 def cadastrar_tinta():
     if not request.is_json:
@@ -95,4 +99,8 @@ def cadastrar_tinta():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(host='127.0.0.1', port=5000, debug=False, use_reloader=False)
+=======
+    app.run(host='127.0.0.1', port=5000, debug=False, use_reloader=False)
+>>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
