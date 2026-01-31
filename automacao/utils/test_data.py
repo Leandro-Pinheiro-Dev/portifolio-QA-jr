@@ -22,7 +22,7 @@ def testes_negativos():
             "acabamento": "fosco"
         },
 
-        # 5️⃣ Nome + tipo + cor + acabamento
+        # 5️⃣ Nome + tipo + cor + acabamento (sem quantidade e validade)
         {
             "nome": "Teste",
             "tipo": "Latex",
@@ -30,7 +30,7 @@ def testes_negativos():
             "acabamento": "fosco"
         },
 
-        # 6️⃣ Todos, mas quantidade inválida
+        # 6️⃣ Quantidade inválida (negativa)
         {
             "nome": "Teste",
             "tipo": "Latex",
@@ -38,73 +38,62 @@ def testes_negativos():
             "acabamento": "fosco",
             "quantidade": -1,
             "validade": "2026-12-31",
+            "condicao": "nova"
+        },
+
+        # 7️⃣ Tipo, cor e acabamento vazios
         {
             "nome": "Teste",
             "tipo": "",
             "cor": "",
             "acabamento": "",
             "quantidade": 10,
-            "validade": "31-12-2029",
+            "validade": "2029-12-31",
             "condicao": "nova"
         },
+
+        # 8️⃣ Cor e acabamento vazios
         {
             "nome": "Teste",
             "tipo": "Acrilica",
             "cor": "",
             "acabamento": "",
             "quantidade": 10,
-            "validade": "31-12-2029",
+            "validade": "2029-12-31",
             "condicao": "nova"
         },
+
+        # 9️⃣ Nome vazio
         {
             "nome": "",
             "tipo": "Acrilica",
-            "cor": "",
-            "acabamento": "",
-            "quantidade": 10,
-            "validade": "31-12-2029",
-            "condicao": "nova"
-        },
-        {
-            "nome": "Teste",
-            "tipo": "Acrilica",
             "cor": "azul",
-            "acabamento": "",
+            "acabamento": "fosco",
             "quantidade": 10,
-            "validade": "31-12-2029",
+            "validade": "2029-12-31",
             "condicao": "nova"
         },
+
+        # 🔟 Quantidade zero (inválida)
         {
             "nome": "Teste",
             "tipo": "Acrilica",
             "cor": "azul",
             "acabamento": "fosco",
             "quantidade": 0,
-            "validade": "31-12-2029",
->>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
+            "validade": "2029-12-31",
             "condicao": "nova"
         }
     ]
 
-<<<<<<< HEAD
 
 def teste_positivo():
     return {
         "nome": "Tinta Premium",
-        "tipo": "Latex",
-        "cor": "azul",
-        "acabamento": "fosco",
-        "quantidade": 20,
-        "validade": "2026-12-31",
-=======
-def teste_positivo():
-    return {
-        "nome": "Leandro Pinheiro",
         "tipo": "Acrilica",
         "cor": "azul",
         "acabamento": "fosco",
         "quantidade": 15,
-        "validade": "31-12-2029",
->>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
+        "validade": "2029-12-31",
         "condicao": "nova"
     }

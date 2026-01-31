@@ -28,15 +28,6 @@ for i, dados in enumerate(testes_negativos(), 1):
         if msg:
             print(f"Validação HTML5 ({campo[1]}):", msg)
 
-    time.sleep(1)
-
-    print(f"\nTeste negativo {i}")
-    print("Feedback:", pagina.obter_feedback())
-
-    for campo in [pagina.TIPO, pagina.COR, pagina.ACABAMENTO]:
-        msg = pagina.obter_mensagem_validacao(campo)
-        if msg:
-            print("Validação HTML5:", msg)
 
 print("\n=== TESTE POSITIVO ===")
 
