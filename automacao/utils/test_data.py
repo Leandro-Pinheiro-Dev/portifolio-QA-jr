@@ -1,6 +1,6 @@
 def testes_negativos():
     return [
-<<<<<<< HEAD
+
         # 1️⃣ Nenhum campo preenchido
         {},
 
@@ -38,7 +38,6 @@ def testes_negativos():
             "acabamento": "fosco",
             "quantidade": -1,
             "validade": "2026-12-31",
-=======
         {
             "nome": "Teste",
             "tipo": "",

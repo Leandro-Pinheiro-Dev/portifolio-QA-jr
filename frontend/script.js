@@ -48,16 +48,7 @@ document
         body: JSON.stringify(data),
       });
 
-<<<<<<< HEAD
-      let result = {};
-      try {
-        result = await response.json();
-      } catch {
-        result = { error: "Erro inesperado na resposta do servidor." };
-      }
-=======
       const result = await response.json();
->>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
 
       if (response.ok) {
         feedback.textContent =
@@ -69,11 +60,8 @@ document
         feedback.className = "error";
       }
     } catch (error) {
-<<<<<<< HEAD
       console.error("Erro de conexão:", error);
-=======
       console.error(error);
->>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
       feedback.textContent = "Erro ao conectar com o servidor.";
       feedback.className = "error";
     }
