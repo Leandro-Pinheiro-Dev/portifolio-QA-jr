@@ -1,12 +1,10 @@
 from selenium.webdriver.common.by import By
-<<<<<<< HEAD
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-=======
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
->>>>>>> 6b326bf4e390c6fda908a3a455147bfb601b7163
+
 
 class CadastroTintaPage:
 
